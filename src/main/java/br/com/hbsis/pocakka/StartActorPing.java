@@ -9,8 +9,8 @@ public class StartActorPing {
     public static void main(String[] args) {
         ActorSystem actorSystem = ActorSystem.create("ActorPing");
 
-        ActorRef actorRef = actorSystem.actorOf(Props.create(EcoActorPong.class),"actorPong");
+        ActorRef actorRef = actorSystem.actorOf(Props.create(EcoActorPong.class), "actorPong");
 
-        actorRef.tell("Ping", actorRef);
+        actorRef.tell("Menssagem: ", actorRef);
     }
 }

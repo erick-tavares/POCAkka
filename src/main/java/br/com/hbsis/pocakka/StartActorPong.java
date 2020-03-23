@@ -11,6 +11,6 @@ public class StartActorPong {
 
         ActorRef actorRef = actorSystem.actorOf(Props.create(EcoActorPing.class), "actorPing");
 
-        actorRef.tell("Pong", actorRef);
+        actorRef.tell("Menssagem: ", actorRef);
     }
 }
