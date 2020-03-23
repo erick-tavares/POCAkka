@@ -4,13 +4,13 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 
-public class StartActorTwo {
+public class StartActorPong {
 
     public static void main(String[] args) {
         ActorSystem actorSystem = ActorSystem.create("ActorPong");
 
-        ActorRef actorRef = actorSystem.actorOf(Props.create(EcoActorOne.class), "eco2");
+        ActorRef actorRef = actorSystem.actorOf(Props.create(EcoActorPing.class), "actorPin");
 
-        actorRef.tell("Log ActorOne: ", actorRef);
+        actorRef.tell("Mensagem do ActorPong: ", actorRef);
     }
 }
