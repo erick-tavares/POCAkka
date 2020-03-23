@@ -11,6 +11,6 @@ public class StartActorTwo {
 
         ActorRef actorRef = actorSystem.actorOf(Props.create(EcoActorOne.class), "eco2");
 
-        actorRef.tell("Alô mundo 2", actorRef);
+        actorRef.tell("Log ActorOne: ", actorRef);
     }
 }

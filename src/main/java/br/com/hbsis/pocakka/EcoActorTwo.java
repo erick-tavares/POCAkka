@@ -9,6 +9,6 @@ public class EcoActorTwo extends UntypedActor {
 
     @Override
     public void onReceive(Object menssagem) throws Exception {
-        log.info("Pong");
+        log.info( "Pong");
     }
 }
