@@ -22,7 +22,7 @@ public class ActorPong extends UntypedAbstractActor {
             //recebe a mensagem do ActorPing
             MailBox.PingMensagem actorPing = (MailBox.PingMensagem) mensagem;
             //mostra a msg enviada do ActorPing para o ActorPong
-            log.info("Mensagem recebida: {} ", actorPing.getMensagem());
+            log.info("Mensagem recebida do ActorPong: {} ", actorPing.getMensagem());
             contador +=1;
             if (contador == 5) {
                 getContext().system().terminate();
