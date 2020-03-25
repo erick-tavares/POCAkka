@@ -15,21 +15,21 @@ public class ActorPong extends UntypedAbstractActor {
 
     @Override
     public void onReceive(Object mensagem) throws Throwable {
-        if (mensagem instanceof MailBox.PongMensagem){
-            //seta a mensagem do ActorPong para o ActorPing
+        if (mensagem instanceof MailBox.PongMensagem) {
             actorPingRef.tell(new MailBox.PongMensagem("Pong"), getSelf());
-        }else if (mensagem instanceof MailBox.PingMensagem){
-            //recebe a mensagem do ActorPing
+
+        } else if (mensagem instanceof MailBox.PingMensagem) {
             MailBox.PingMensagem actorPing = (MailBox.PingMensagem) mensagem;
-            //mostra a msg enviada do ActorPing para o ActorPong
-            log.info("Mensagem recebida do ActorPong: {} ", actorPing.getMensagem());
-            contador +=1;
+            log.info("Mensagem recebida: {} ", actorPing.getMensagem());
+            contador += 1;
+
             if (contador == 5) {
                 getContext().system().terminate();
-            }else{
+
+            } else {
                 getSender().tell(new MailBox.PongMensagem("Pong"), getSelf());
             }
-        }else{
+        } else {
             unhandled(mensagem);
         }
     }
