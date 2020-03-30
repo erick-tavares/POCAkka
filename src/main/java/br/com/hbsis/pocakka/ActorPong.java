@@ -10,8 +10,6 @@ public class ActorPong extends UntypedAbstractActor {
 
     LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
-    ActorSelection actorPingRef = getContext().actorSelection("akka.tcp://ActorSystemPing@127.0.0.1:2552/user/actorPing");
-
     public static Props props() {
         return Props.create(ActorPong.class);
     }
