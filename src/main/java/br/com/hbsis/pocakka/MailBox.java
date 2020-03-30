@@ -1,8 +1,10 @@
 package br.com.hbsis.pocakka;
 
-public class MailBox {
+import scala.Serializable;
 
-    public static class PingMensagem {
+public class MailBox implements Serializable {
+
+    public static class PingMensagem implements Serializable {
         private String mensagem;
 
         public PingMensagem(String mensagem) {
@@ -14,7 +16,7 @@ public class MailBox {
         }
     }
 
-    public static class PongMensagem {
+    public static class PongMensagem implements Serializable{
         private String mensagem;
 
         public PongMensagem(String mensagem) {

@@ -1,20 +1,20 @@
 package br.com.hbsis.pocakka;
 
-import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
-import akka.actor.Props;
-import akka.actor.Terminated;
+import akka.actor.*;
+import akka.remote.ContainerFormats;
 import com.typesafe.config.ConfigFactory;
-import scala.concurrent.Future;
+
 
 public class ActorSystemPing {
 
     public static void main(String[] args) {
-        ActorSystem actorSystem = ActorSystem.create("ActorSystemPing", ConfigFactory.load());
+        ActorSystem actorSystem = ActorSystem.create("ActorSystemPing", ConfigFactory.load().getConfig("ActorSystemPing"));
 
-        ActorRef actorPingRef = actorSystem.actorOf(Props.create(ActorPing.class), "ActorPing");
+        ActorRef actorPingRef = actorSystem.actorOf(ActorPing.props(), "actorPing");
 
         actorPingRef.tell(new MailBox.PingMensagem("Ping"), ActorRef.noSender());
+
         actorSystem.getWhenTerminated();
     }
 }
+

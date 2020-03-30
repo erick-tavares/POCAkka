@@ -1,16 +1,19 @@
 package br.com.hbsis.pocakka;
 
-import akka.actor.ActorRef;
-import akka.actor.Props;
-import akka.actor.UntypedAbstractActor;
+import akka.actor.*;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 
 public class ActorPing extends UntypedAbstractActor {
 
-    LoggingAdapter log = Logging.getLogger(getContext().system(), this);
-    int contador = 0;
-    private ActorRef actorPongRef = getContext().actorOf(Props.create(ActorPong.class), "ActorPong");
+    LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
+
+
+    public static Props props() {
+        return Props.create(ActorPing.class);
+    }
+
+     ActorSelection actorPongRef = getContext().actorSelection("akka.tcp://ActorSystemPong@127.0.0.1:2553/user/actorPong");
 
     @Override
     public void onReceive(Object mensagem) throws Throwable {
@@ -21,14 +24,6 @@ public class ActorPing extends UntypedAbstractActor {
         } else if (mensagem instanceof MailBox.PongMensagem) {
             MailBox.PongMensagem actorPong = (MailBox.PongMensagem) mensagem;
             log.info("Mensagem recebida: {} ", actorPong.getMensagem());
-            contador += 1;
-
-            if (contador == 5) {
-                getContext().system().terminate();
-
-            } else {
-                getSender().tell(new MailBox.PingMensagem("Ping"), getSelf());
-            }
         } else {
             unhandled(mensagem);
         }
