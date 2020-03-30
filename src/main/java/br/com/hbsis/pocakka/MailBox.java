@@ -16,7 +16,7 @@ public class MailBox implements Serializable {
         }
     }
 
-    public static class PongMensagem implements Serializable{
+    public static class PongMensagem implements Serializable {
         private String mensagem;
 
         public PongMensagem(String mensagem) {

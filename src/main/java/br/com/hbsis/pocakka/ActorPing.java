@@ -1,19 +1,19 @@
 package br.com.hbsis.pocakka;
 
-import akka.actor.*;
+import akka.actor.ActorSelection;
+import akka.actor.Props;
+import akka.actor.UntypedAbstractActor;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 
 public class ActorPing extends UntypedAbstractActor {
 
     LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
-
+    ActorSelection actorPongRef = getContext().actorSelection("akka.tcp://ActorSystemPong@127.0.0.1:2553/user/actorPong");
 
     public static Props props() {
         return Props.create(ActorPing.class);
     }
-
-     ActorSelection actorPongRef = getContext().actorSelection("akka.tcp://ActorSystemPong@127.0.0.1:2553/user/actorPong");
 
     @Override
     public void onReceive(Object mensagem) throws Throwable {
