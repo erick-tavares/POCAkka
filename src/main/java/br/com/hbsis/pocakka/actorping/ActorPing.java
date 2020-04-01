@@ -1,11 +1,15 @@
-package br.com.hbsis.pocakka;
+package br.com.hbsis.pocakka.actorping;
 
 import akka.actor.ActorSelection;
 import akka.actor.Props;
 import akka.actor.UntypedAbstractActor;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
+import br.com.hbsis.pocakka.config.Actor;
+import br.com.hbsis.pocakka.MailBox;
 
+
+@Actor
 public class ActorPing extends UntypedAbstractActor {
 
     LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);

@@ -1,7 +1,9 @@
 package br.com.hbsis.pocakka;
 
+import org.springframework.stereotype.Service;
 import scala.Serializable;
 
+@Service
 public class MailBox implements Serializable {
 
     public static class PingMensagem implements Serializable {

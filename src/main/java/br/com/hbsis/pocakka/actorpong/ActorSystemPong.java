@@ -1,9 +1,12 @@
-package br.com.hbsis.pocakka;
+package br.com.hbsis.pocakka.actorpong;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
+import br.com.hbsis.pocakka.actorpong.ActorPong;
 import com.typesafe.config.ConfigFactory;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 public class ActorSystemPong {
 
     public static void main(String[] args) {

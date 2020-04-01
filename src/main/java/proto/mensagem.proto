@@ -1,0 +1,10 @@
+syntax="proto3";
+
+package br.com.hbsis.pocakka;
+
+
+    message PingMensagem {
+        required string mensagem = 1;
+    }
+
+
