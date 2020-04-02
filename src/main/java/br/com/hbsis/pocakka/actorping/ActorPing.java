@@ -15,9 +15,9 @@ public class ActorPing extends UntypedAbstractActor {
     LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
     ActorSelection actorPongRef = getContext().actorSelection("akka.tcp://ActorSystemPong@127.0.0.1:2553/user/actorPong");
 
-    public static Props props() {
-        return Props.create(ActorPing.class);
-    }
+//    public static Props props() {
+//        return Props.create(ActorPing.class);
+//    }
 
     @Override
     public void onReceive(Object mensagem) throws Throwable {

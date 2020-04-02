@@ -1,4 +1,4 @@
-package br.com.hbsis.pocakka.exemploactor;
+package br.com.hbsis.pocakka.exemploAbstractActor;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
