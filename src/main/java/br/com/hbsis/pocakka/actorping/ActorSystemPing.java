@@ -28,7 +28,6 @@ public class ActorSystemPing {
         ActorSystem actorSystem = ActorSystem.create("ActorSystemPing", ConfigFactory.load().getConfig("ActorSystemPing"));
         SpringExtension.getInstance().get(actorSystem).initialize(context);
 
-        // ActorRef actorPingRef = actorSystem.actorOf(ActorPing.props(), "actorPing");
         ActorRef actorPingRef = actorSystem.actorOf(SpringProps.create(actorSystem, ActorPing.class), "actorPing");
 
         actorPingRef.tell(new MailBox.PingMensagem("Mensagem"), ActorRef.noSender());

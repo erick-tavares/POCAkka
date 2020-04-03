@@ -29,4 +29,28 @@ public class MailBox implements Serializable {
             return mensagem;
         }
     }
+
+    public static class OlaOk implements Serializable {
+        private String mensagem;
+
+        public OlaOk(String mensagem) {
+            this.mensagem = mensagem;
+        }
+
+        public String getMensagem() {
+            return mensagem;
+        }
+    }
+
+    public static class Error implements Serializable {
+        private NullPointerException mensagem;
+
+        public Error(NullPointerException mensagem) {
+            this.mensagem = mensagem;
+        }
+
+        public NullPointerException getMensagem() {
+            return mensagem;
+        }
+    }
 }
