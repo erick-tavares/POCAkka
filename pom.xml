@@ -35,11 +35,7 @@
 			<version>3.10.0</version>
 			<type>pom</type>
 		</dependency>
-		<dependency>
-			<groupId>io.grpc</groupId>
-			<artifactId>grpc-all</artifactId>
-			<version>1.28.0</version>
-		</dependency>
+
 
 		<dependency>
 			<groupId>com.typesafe.akka</groupId>
@@ -64,24 +60,17 @@
 			<version>3.10.6.Final</version>
 		</dependency>
 
-
-
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.25</version>
+			<version>1.7.30</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>

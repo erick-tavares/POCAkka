@@ -4,21 +4,21 @@ import org.springframework.stereotype.Service;
 import scala.Serializable;
 
 @Service
-public class MailBox implements Serializable {
+public class MailBox {
 
-    public static class PingMensagem implements Serializable {
+    public static class PingMensagem {
         private String mensagem;
 
-        public PingMensagem(String mensagem) {
-            this.mensagem = mensagem;
-        }
-
-        public String getMensagem() {
-            return mensagem;
-        }
+    public PingMensagem(String mensagem) {
+        this.mensagem = mensagem;
     }
 
-    public static class PongMensagem implements Serializable {
+    public String getMensagem() {
+        return mensagem;
+    }
+}
+
+    public static class PongMensagem {
         private String mensagem;
 
         public PongMensagem(String mensagem) {
@@ -30,7 +30,7 @@ public class MailBox implements Serializable {
         }
     }
 
-    public static class OlaOk implements Serializable {
+    public static class OlaOk {
         private String mensagem;
 
         public OlaOk(String mensagem) {
@@ -42,7 +42,7 @@ public class MailBox implements Serializable {
         }
     }
 
-    public static class Error implements Serializable {
+    public static class Error {
         private NullPointerException mensagem;
 
         public Error(NullPointerException mensagem) {

@@ -1,10 +1,21 @@
 syntax="proto3";
 
-package br.com.hbsis.pocakka;
+package serializacao;
+
+option java_package = "protobuf";
+option java_outer_classname = "PocAkkaOuterClass";
+option java_multiple_files = true;
 
 
-    message PingMensagem {
-        required string mensagem = 1;
-    }
+message PingMensagem{
+     string mensagem = 1;
+}
 
+message PongMensagem{
+     string mensagem = 1;
+}
 
+message MailBox{
+     PingMensagem ping = 1;
+     PongMensagem pong = 2;
+}
