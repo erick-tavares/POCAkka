@@ -38,7 +38,7 @@ public class ActorPing extends UntypedAbstractActor {
     //    public static Props props() {
 //        return Props.create(ActorPing.class);
 //    }
-    private ActorRef actorOkRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorOk.class), "actorOk");
+    private ActorRef actorFilhoRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorFilho.class), "actorFilho");
 
 
     @Override
@@ -55,18 +55,18 @@ public class ActorPing extends UntypedAbstractActor {
 
             if (mensagem.equals("pong")) {
                 actorPongRef.tell(new MailBox.PingMensagem("Ping"), getSelf());
-            } else if (mensagem.equals("ok")) {
-                actorOkRef.tell(new MailBox.PingMensagem("Ping"), getSelf());
+            } else if (mensagem.equals("filho")) {
+                actorFilhoRef.tell(new MailBox.PingMensagem("Ping"), getSelf());
             } else {
-                actorOkRef.tell(new MailBox.Error(new NullPointerException()), getSelf());
+                actorFilhoRef.tell(new MailBox.Error(new NullPointerException()), getSelf());
             }
         } else if (mensagem instanceof MailBox.PongMensagem) {
             MailBox.PongMensagem actorPong = (MailBox.PongMensagem) mensagem;
             log.info("Mensagem recebida: {} ", actorPong.getMensagem());
 
-        } else if (mensagem instanceof MailBox.OlaOk) {
-            MailBox.OlaOk olaOk = (MailBox.OlaOk) mensagem;
-            log.info("Mensagem recebida: {} ", olaOk.getMensagem());
+        } else if (mensagem instanceof MailBox.FilhoMensagem) {
+            MailBox.FilhoMensagem filhoMensagem = (MailBox.FilhoMensagem) mensagem;
+            log.info("Mensagem recebida: {} ", filhoMensagem.getMensagem());
         } else if (mensagem instanceof NullPointerException) {
             unhandled(mensagem);
         }
