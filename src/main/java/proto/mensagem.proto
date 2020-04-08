@@ -14,8 +14,15 @@ message PingMensagem{
 message PongMensagem{
      string mensagem = 1;
 }
-
+message FilhoMensagem{
+     string mensagem = 1;
+}
+message ErroMensagem{
+     string mensagem = 1;
+}
 message MailBox{
      PingMensagem ping = 1;
      PongMensagem pong = 2;
+     FilhoMensagem filho = 3;
+     ErroMensagem erro = 4;
 }

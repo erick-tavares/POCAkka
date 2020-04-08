@@ -25,6 +25,16 @@ public final class PocAkkaOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_serializacao_PongMensagem_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_serializacao_FilhoMensagem_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_serializacao_FilhoMensagem_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_serializacao_ErroMensagem_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_serializacao_ErroMensagem_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_serializacao_MailBox_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -40,10 +50,14 @@ public final class PocAkkaOuterClass {
     java.lang.String[] descriptorData = {
       "\n\016mensagem.proto\022\014serializacao\" \n\014PingMe" +
       "nsagem\022\020\n\010mensagem\030\001 \001(\t\" \n\014PongMensagem" +
-      "\022\020\n\010mensagem\030\001 \001(\t\"]\n\007MailBox\022(\n\004ping\030\001 " +
-      "\001(\0132\032.serializacao.PingMensagem\022(\n\004pong\030" +
-      "\002 \001(\0132\032.serializacao.PongMensagemB\037\n\010pro" +
-      "tobufB\021PocAkkaOuterClassP\001b\006proto3"
+      "\022\020\n\010mensagem\030\001 \001(\t\"!\n\rFilhoMensagem\022\020\n\010m" +
+      "ensagem\030\001 \001(\t\" \n\014ErroMensagem\022\020\n\010mensage" +
+      "m\030\001 \001(\t\"\263\001\n\007MailBox\022(\n\004ping\030\001 \001(\0132\032.seri" +
+      "alizacao.PingMensagem\022(\n\004pong\030\002 \001(\0132\032.se" +
+      "rializacao.PongMensagem\022*\n\005filho\030\003 \001(\0132\033" +
+      ".serializacao.FilhoMensagem\022(\n\004erro\030\004 \001(" +
+      "\0132\032.serializacao.ErroMensagemB\037\n\010protobu" +
+      "fB\021PocAkkaOuterClassP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -61,12 +75,24 @@ public final class PocAkkaOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_serializacao_PongMensagem_descriptor,
         new java.lang.String[] { "Mensagem", });
-    internal_static_serializacao_MailBox_descriptor =
+    internal_static_serializacao_FilhoMensagem_descriptor =
       getDescriptor().getMessageTypes().get(2);
+    internal_static_serializacao_FilhoMensagem_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_serializacao_FilhoMensagem_descriptor,
+        new java.lang.String[] { "Mensagem", });
+    internal_static_serializacao_ErroMensagem_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_serializacao_ErroMensagem_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_serializacao_ErroMensagem_descriptor,
+        new java.lang.String[] { "Mensagem", });
+    internal_static_serializacao_MailBox_descriptor =
+      getDescriptor().getMessageTypes().get(4);
     internal_static_serializacao_MailBox_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_serializacao_MailBox_descriptor,
-        new java.lang.String[] { "Ping", "Pong", });
+        new java.lang.String[] { "Ping", "Pong", "Filho", "Erro", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

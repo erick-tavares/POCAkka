@@ -36,4 +36,34 @@ public interface MailBoxOrBuilder extends
    * <code>.serializacao.PongMensagem pong = 2;</code>
    */
   protobuf.PongMensagemOrBuilder getPongOrBuilder();
+
+  /**
+   * <code>.serializacao.FilhoMensagem filho = 3;</code>
+   * @return Whether the filho field is set.
+   */
+  boolean hasFilho();
+  /**
+   * <code>.serializacao.FilhoMensagem filho = 3;</code>
+   * @return The filho.
+   */
+  protobuf.FilhoMensagem getFilho();
+  /**
+   * <code>.serializacao.FilhoMensagem filho = 3;</code>
+   */
+  protobuf.FilhoMensagemOrBuilder getFilhoOrBuilder();
+
+  /**
+   * <code>.serializacao.ErroMensagem erro = 4;</code>
+   * @return Whether the erro field is set.
+   */
+  boolean hasErro();
+  /**
+   * <code>.serializacao.ErroMensagem erro = 4;</code>
+   * @return The erro.
+   */
+  protobuf.ErroMensagem getErro();
+  /**
+   * <code>.serializacao.ErroMensagem erro = 4;</code>
+   */
+  protobuf.ErroMensagemOrBuilder getErroOrBuilder();
 }

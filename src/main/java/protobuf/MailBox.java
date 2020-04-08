@@ -74,6 +74,32 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
+          case 26: {
+            protobuf.FilhoMensagem.Builder subBuilder = null;
+            if (filho_ != null) {
+              subBuilder = filho_.toBuilder();
+            }
+            filho_ = input.readMessage(protobuf.FilhoMensagem.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(filho_);
+              filho_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
+          case 34: {
+            protobuf.ErroMensagem.Builder subBuilder = null;
+            if (erro_ != null) {
+              subBuilder = erro_.toBuilder();
+            }
+            erro_ = input.readMessage(protobuf.ErroMensagem.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(erro_);
+              erro_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -152,6 +178,52 @@ private static final long serialVersionUID = 0L;
     return getPong();
   }
 
+  public static final int FILHO_FIELD_NUMBER = 3;
+  private protobuf.FilhoMensagem filho_;
+  /**
+   * <code>.serializacao.FilhoMensagem filho = 3;</code>
+   * @return Whether the filho field is set.
+   */
+  public boolean hasFilho() {
+    return filho_ != null;
+  }
+  /**
+   * <code>.serializacao.FilhoMensagem filho = 3;</code>
+   * @return The filho.
+   */
+  public protobuf.FilhoMensagem getFilho() {
+    return filho_ == null ? protobuf.FilhoMensagem.getDefaultInstance() : filho_;
+  }
+  /**
+   * <code>.serializacao.FilhoMensagem filho = 3;</code>
+   */
+  public protobuf.FilhoMensagemOrBuilder getFilhoOrBuilder() {
+    return getFilho();
+  }
+
+  public static final int ERRO_FIELD_NUMBER = 4;
+  private protobuf.ErroMensagem erro_;
+  /**
+   * <code>.serializacao.ErroMensagem erro = 4;</code>
+   * @return Whether the erro field is set.
+   */
+  public boolean hasErro() {
+    return erro_ != null;
+  }
+  /**
+   * <code>.serializacao.ErroMensagem erro = 4;</code>
+   * @return The erro.
+   */
+  public protobuf.ErroMensagem getErro() {
+    return erro_ == null ? protobuf.ErroMensagem.getDefaultInstance() : erro_;
+  }
+  /**
+   * <code>.serializacao.ErroMensagem erro = 4;</code>
+   */
+  public protobuf.ErroMensagemOrBuilder getErroOrBuilder() {
+    return getErro();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -172,6 +244,12 @@ private static final long serialVersionUID = 0L;
     if (pong_ != null) {
       output.writeMessage(2, getPong());
     }
+    if (filho_ != null) {
+      output.writeMessage(3, getFilho());
+    }
+    if (erro_ != null) {
+      output.writeMessage(4, getErro());
+    }
     unknownFields.writeTo(output);
   }
 
@@ -188,6 +266,14 @@ private static final long serialVersionUID = 0L;
     if (pong_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getPong());
+    }
+    if (filho_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(3, getFilho());
+    }
+    if (erro_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(4, getErro());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -214,6 +300,16 @@ private static final long serialVersionUID = 0L;
       if (!getPong()
           .equals(other.getPong())) return false;
     }
+    if (hasFilho() != other.hasFilho()) return false;
+    if (hasFilho()) {
+      if (!getFilho()
+          .equals(other.getFilho())) return false;
+    }
+    if (hasErro() != other.hasErro()) return false;
+    if (hasErro()) {
+      if (!getErro()
+          .equals(other.getErro())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -232,6 +328,14 @@ private static final long serialVersionUID = 0L;
     if (hasPong()) {
       hash = (37 * hash) + PONG_FIELD_NUMBER;
       hash = (53 * hash) + getPong().hashCode();
+    }
+    if (hasFilho()) {
+      hash = (37 * hash) + FILHO_FIELD_NUMBER;
+      hash = (53 * hash) + getFilho().hashCode();
+    }
+    if (hasErro()) {
+      hash = (37 * hash) + ERRO_FIELD_NUMBER;
+      hash = (53 * hash) + getErro().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -378,6 +482,18 @@ private static final long serialVersionUID = 0L;
         pong_ = null;
         pongBuilder_ = null;
       }
+      if (filhoBuilder_ == null) {
+        filho_ = null;
+      } else {
+        filho_ = null;
+        filhoBuilder_ = null;
+      }
+      if (erroBuilder_ == null) {
+        erro_ = null;
+      } else {
+        erro_ = null;
+        erroBuilder_ = null;
+      }
       return this;
     }
 
@@ -413,6 +529,16 @@ private static final long serialVersionUID = 0L;
         result.pong_ = pong_;
       } else {
         result.pong_ = pongBuilder_.build();
+      }
+      if (filhoBuilder_ == null) {
+        result.filho_ = filho_;
+      } else {
+        result.filho_ = filhoBuilder_.build();
+      }
+      if (erroBuilder_ == null) {
+        result.erro_ = erro_;
+      } else {
+        result.erro_ = erroBuilder_.build();
       }
       onBuilt();
       return result;
@@ -467,6 +593,12 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasPong()) {
         mergePong(other.getPong());
+      }
+      if (other.hasFilho()) {
+        mergeFilho(other.getFilho());
+      }
+      if (other.hasErro()) {
+        mergeErro(other.getErro());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -733,6 +865,244 @@ private static final long serialVersionUID = 0L;
         pong_ = null;
       }
       return pongBuilder_;
+    }
+
+    private protobuf.FilhoMensagem filho_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        protobuf.FilhoMensagem, protobuf.FilhoMensagem.Builder, protobuf.FilhoMensagemOrBuilder> filhoBuilder_;
+    /**
+     * <code>.serializacao.FilhoMensagem filho = 3;</code>
+     * @return Whether the filho field is set.
+     */
+    public boolean hasFilho() {
+      return filhoBuilder_ != null || filho_ != null;
+    }
+    /**
+     * <code>.serializacao.FilhoMensagem filho = 3;</code>
+     * @return The filho.
+     */
+    public protobuf.FilhoMensagem getFilho() {
+      if (filhoBuilder_ == null) {
+        return filho_ == null ? protobuf.FilhoMensagem.getDefaultInstance() : filho_;
+      } else {
+        return filhoBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.serializacao.FilhoMensagem filho = 3;</code>
+     */
+    public Builder setFilho(protobuf.FilhoMensagem value) {
+      if (filhoBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        filho_ = value;
+        onChanged();
+      } else {
+        filhoBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.serializacao.FilhoMensagem filho = 3;</code>
+     */
+    public Builder setFilho(
+        protobuf.FilhoMensagem.Builder builderForValue) {
+      if (filhoBuilder_ == null) {
+        filho_ = builderForValue.build();
+        onChanged();
+      } else {
+        filhoBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.serializacao.FilhoMensagem filho = 3;</code>
+     */
+    public Builder mergeFilho(protobuf.FilhoMensagem value) {
+      if (filhoBuilder_ == null) {
+        if (filho_ != null) {
+          filho_ =
+            protobuf.FilhoMensagem.newBuilder(filho_).mergeFrom(value).buildPartial();
+        } else {
+          filho_ = value;
+        }
+        onChanged();
+      } else {
+        filhoBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.serializacao.FilhoMensagem filho = 3;</code>
+     */
+    public Builder clearFilho() {
+      if (filhoBuilder_ == null) {
+        filho_ = null;
+        onChanged();
+      } else {
+        filho_ = null;
+        filhoBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.serializacao.FilhoMensagem filho = 3;</code>
+     */
+    public protobuf.FilhoMensagem.Builder getFilhoBuilder() {
+      
+      onChanged();
+      return getFilhoFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.serializacao.FilhoMensagem filho = 3;</code>
+     */
+    public protobuf.FilhoMensagemOrBuilder getFilhoOrBuilder() {
+      if (filhoBuilder_ != null) {
+        return filhoBuilder_.getMessageOrBuilder();
+      } else {
+        return filho_ == null ?
+            protobuf.FilhoMensagem.getDefaultInstance() : filho_;
+      }
+    }
+    /**
+     * <code>.serializacao.FilhoMensagem filho = 3;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        protobuf.FilhoMensagem, protobuf.FilhoMensagem.Builder, protobuf.FilhoMensagemOrBuilder> 
+        getFilhoFieldBuilder() {
+      if (filhoBuilder_ == null) {
+        filhoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            protobuf.FilhoMensagem, protobuf.FilhoMensagem.Builder, protobuf.FilhoMensagemOrBuilder>(
+                getFilho(),
+                getParentForChildren(),
+                isClean());
+        filho_ = null;
+      }
+      return filhoBuilder_;
+    }
+
+    private protobuf.ErroMensagem erro_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        protobuf.ErroMensagem, protobuf.ErroMensagem.Builder, protobuf.ErroMensagemOrBuilder> erroBuilder_;
+    /**
+     * <code>.serializacao.ErroMensagem erro = 4;</code>
+     * @return Whether the erro field is set.
+     */
+    public boolean hasErro() {
+      return erroBuilder_ != null || erro_ != null;
+    }
+    /**
+     * <code>.serializacao.ErroMensagem erro = 4;</code>
+     * @return The erro.
+     */
+    public protobuf.ErroMensagem getErro() {
+      if (erroBuilder_ == null) {
+        return erro_ == null ? protobuf.ErroMensagem.getDefaultInstance() : erro_;
+      } else {
+        return erroBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.serializacao.ErroMensagem erro = 4;</code>
+     */
+    public Builder setErro(protobuf.ErroMensagem value) {
+      if (erroBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        erro_ = value;
+        onChanged();
+      } else {
+        erroBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.serializacao.ErroMensagem erro = 4;</code>
+     */
+    public Builder setErro(
+        protobuf.ErroMensagem.Builder builderForValue) {
+      if (erroBuilder_ == null) {
+        erro_ = builderForValue.build();
+        onChanged();
+      } else {
+        erroBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.serializacao.ErroMensagem erro = 4;</code>
+     */
+    public Builder mergeErro(protobuf.ErroMensagem value) {
+      if (erroBuilder_ == null) {
+        if (erro_ != null) {
+          erro_ =
+            protobuf.ErroMensagem.newBuilder(erro_).mergeFrom(value).buildPartial();
+        } else {
+          erro_ = value;
+        }
+        onChanged();
+      } else {
+        erroBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.serializacao.ErroMensagem erro = 4;</code>
+     */
+    public Builder clearErro() {
+      if (erroBuilder_ == null) {
+        erro_ = null;
+        onChanged();
+      } else {
+        erro_ = null;
+        erroBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.serializacao.ErroMensagem erro = 4;</code>
+     */
+    public protobuf.ErroMensagem.Builder getErroBuilder() {
+      
+      onChanged();
+      return getErroFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.serializacao.ErroMensagem erro = 4;</code>
+     */
+    public protobuf.ErroMensagemOrBuilder getErroOrBuilder() {
+      if (erroBuilder_ != null) {
+        return erroBuilder_.getMessageOrBuilder();
+      } else {
+        return erro_ == null ?
+            protobuf.ErroMensagem.getDefaultInstance() : erro_;
+      }
+    }
+    /**
+     * <code>.serializacao.ErroMensagem erro = 4;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        protobuf.ErroMensagem, protobuf.ErroMensagem.Builder, protobuf.ErroMensagemOrBuilder> 
+        getErroFieldBuilder() {
+      if (erroBuilder_ == null) {
+        erroBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            protobuf.ErroMensagem, protobuf.ErroMensagem.Builder, protobuf.ErroMensagemOrBuilder>(
+                getErro(),
+                getParentForChildren(),
+                isClean());
+        erro_ = null;
+      }
+      return erroBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(
