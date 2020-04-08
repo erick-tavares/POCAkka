@@ -9,16 +9,16 @@ import br.com.hbsis.pocakka.config.SpringProps;
 import scala.concurrent.duration.Duration;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 
 @Actor
 public class ActorPing extends UntypedAbstractActor {
 
-
     Scanner s = new Scanner(System.in);
     LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
     public SupervisorStrategy strategy =
-            new OneForOneStrategy(3, Duration.create("5 second"),
+            new OneForOneStrategy(3, Duration.create(5, TimeUnit.SECONDS),
                     new akka.japi.Function<Throwable, SupervisorStrategy.Directive>() {
 
                         @Override
@@ -35,11 +35,7 @@ public class ActorPing extends UntypedAbstractActor {
 
 
     private ActorSelection actorPongRef = getContext().actorSelection("akka.tcp://ActorSystemPong@127.0.0.1:2553/user/actorPong");
-    //    public static Props props() {
-//        return Props.create(ActorPing.class);
-//    }
     private ActorRef actorFilhoRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorFilho.class), "actorFilho");
-
 
     @Override
     public SupervisorStrategy supervisorStrategy() {

@@ -6,15 +6,11 @@ import akka.event.LoggingAdapter;
 import br.com.hbsis.pocakka.MailBox;
 import br.com.hbsis.pocakka.config.Actor;
 
-
 @Actor
 public class ActorPong extends UntypedAbstractActor {
 
     LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
-    //    public static Props props() {
-//        return Props.create(ActorPong.class);
-//    }
     @Override
     public void onReceive(Object mensagem) throws Throwable {
 
