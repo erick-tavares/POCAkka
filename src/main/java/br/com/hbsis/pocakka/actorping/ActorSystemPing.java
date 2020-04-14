@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import protobuf.PingMensagem;
 
 import javax.annotation.PostConstruct;
 
@@ -27,9 +26,9 @@ public class ActorSystemPing {
         ActorSystem actorSystem = ActorSystem.create("ActorSystemPing", ConfigFactory.load().getConfig("ActorSystemPing"));
         SpringExtension.getInstance().get(actorSystem).initialize(context);
 
-        ActorRef actorPingRef = actorSystem.actorOf(SpringProps.create(actorSystem, ActorPing.class), "actorPing");
+        ActorRef actorSuperRef = actorSystem.actorOf(SpringProps.create(actorSystem, SupervisorPing.class), "supervisorPing");
 
-        actorPingRef.tell(PingMensagem.newBuilder().build(), ActorRef.noSender());
+        actorSuperRef.tell("Iniciar", ActorRef.noSender());
 
         actorSystem.getWhenTerminated();
     }

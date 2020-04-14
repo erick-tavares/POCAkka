@@ -18,4 +18,15 @@ public interface PingMensagemOrBuilder extends
    */
   com.google.protobuf.ByteString
       getMensagemBytes();
+
+  /**
+   * <code>.serializacao.Nivel nivel = 2;</code>
+   * @return The enum numeric value on the wire for nivel.
+   */
+  int getNivelValue();
+  /**
+   * <code>.serializacao.Nivel nivel = 2;</code>
+   * @return The nivel.
+   */
+  protobuf.Nivel getNivel();
 }

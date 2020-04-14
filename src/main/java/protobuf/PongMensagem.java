@@ -17,6 +17,7 @@ private static final long serialVersionUID = 0L;
   }
   private PongMensagem() {
     mensagem_ = "";
+    nivel_ = 0;
   }
 
   @java.lang.Override
@@ -53,6 +54,12 @@ private static final long serialVersionUID = 0L;
             java.lang.String s = input.readStringRequireUtf8();
 
             mensagem_ = s;
+            break;
+          }
+          case 16: {
+            int rawValue = input.readEnum();
+
+            nivel_ = rawValue;
             break;
           }
           default: {
@@ -123,6 +130,25 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int NIVEL_FIELD_NUMBER = 2;
+  private int nivel_;
+  /**
+   * <code>.serializacao.Nivel nivel = 2;</code>
+   * @return The enum numeric value on the wire for nivel.
+   */
+  public int getNivelValue() {
+    return nivel_;
+  }
+  /**
+   * <code>.serializacao.Nivel nivel = 2;</code>
+   * @return The nivel.
+   */
+  public protobuf.Nivel getNivel() {
+    @SuppressWarnings("deprecation")
+    protobuf.Nivel result = protobuf.Nivel.valueOf(nivel_);
+    return result == null ? protobuf.Nivel.UNRECOGNIZED : result;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -140,6 +166,9 @@ private static final long serialVersionUID = 0L;
     if (!getMensagemBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, mensagem_);
     }
+    if (nivel_ != protobuf.Nivel.BAIXO.getNumber()) {
+      output.writeEnum(2, nivel_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -151,6 +180,10 @@ private static final long serialVersionUID = 0L;
     size = 0;
     if (!getMensagemBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, mensagem_);
+    }
+    if (nivel_ != protobuf.Nivel.BAIXO.getNumber()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeEnumSize(2, nivel_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -169,6 +202,7 @@ private static final long serialVersionUID = 0L;
 
     if (!getMensagem()
         .equals(other.getMensagem())) return false;
+    if (nivel_ != other.nivel_) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -182,6 +216,8 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + MENSAGEM_FIELD_NUMBER;
     hash = (53 * hash) + getMensagem().hashCode();
+    hash = (37 * hash) + NIVEL_FIELD_NUMBER;
+    hash = (53 * hash) + nivel_;
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -317,6 +353,8 @@ private static final long serialVersionUID = 0L;
       super.clear();
       mensagem_ = "";
 
+      nivel_ = 0;
+
       return this;
     }
 
@@ -344,6 +382,7 @@ private static final long serialVersionUID = 0L;
     public protobuf.PongMensagem buildPartial() {
       protobuf.PongMensagem result = new protobuf.PongMensagem(this);
       result.mensagem_ = mensagem_;
+      result.nivel_ = nivel_;
       onBuilt();
       return result;
     }
@@ -395,6 +434,9 @@ private static final long serialVersionUID = 0L;
       if (!other.getMensagem().isEmpty()) {
         mensagem_ = other.mensagem_;
         onChanged();
+      }
+      if (other.nivel_ != 0) {
+        setNivelValue(other.getNivelValue());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -497,6 +539,58 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       mensagem_ = value;
+      onChanged();
+      return this;
+    }
+
+    private int nivel_ = 0;
+    /**
+     * <code>.serializacao.Nivel nivel = 2;</code>
+     * @return The enum numeric value on the wire for nivel.
+     */
+    public int getNivelValue() {
+      return nivel_;
+    }
+    /**
+     * <code>.serializacao.Nivel nivel = 2;</code>
+     * @param value The enum numeric value on the wire for nivel to set.
+     * @return This builder for chaining.
+     */
+    public Builder setNivelValue(int value) {
+      nivel_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.serializacao.Nivel nivel = 2;</code>
+     * @return The nivel.
+     */
+    public protobuf.Nivel getNivel() {
+      @SuppressWarnings("deprecation")
+      protobuf.Nivel result = protobuf.Nivel.valueOf(nivel_);
+      return result == null ? protobuf.Nivel.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>.serializacao.Nivel nivel = 2;</code>
+     * @param value The nivel to set.
+     * @return This builder for chaining.
+     */
+    public Builder setNivel(protobuf.Nivel value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      nivel_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.serializacao.Nivel nivel = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearNivel() {
+      
+      nivel_ = 0;
       onChanged();
       return this;
     }

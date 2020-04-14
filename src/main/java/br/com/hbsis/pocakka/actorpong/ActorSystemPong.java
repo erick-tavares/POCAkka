@@ -27,8 +27,7 @@ public class ActorSystemPong {
         ActorSystem actorSystem = ActorSystem.create("ActorSystemPong", ConfigFactory.load().getConfig("ActorSystemPong"));
 
         SpringExtension.getInstance().get(actorSystem).initialize(context);
-        //  ActorRef actorPongRef = actorSystem.actorOf(ActorPong.props(), "actorPong");
-        ActorRef actorPongRef = actorSystem.actorOf(SpringProps.create(actorSystem, ActorPong.class), "actorPong");
+        ActorRef actorSuperRef = actorSystem.actorOf(SpringProps.create(actorSystem, SupervisorPong.class), "supervisorPong");
 
         actorSystem.getWhenTerminated();
     }

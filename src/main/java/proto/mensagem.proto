@@ -6,23 +6,22 @@ option java_package = "protobuf";
 option java_outer_classname = "PocAkkaOuterClass";
 option java_multiple_files = true;
 
+enum Nivel {
+     BAIXO = 0;
+     NORMAL = 1;
+     ALTO = 2;
+}
 
 message PingMensagem{
      string mensagem = 1;
+          Nivel nivel = 2;
 }
 
 message PongMensagem{
      string mensagem = 1;
+     Nivel nivel = 2;
 }
-message FilhoMensagem{
-     string mensagem = 1;
-}
+
 message ErroMensagem{
      string mensagem = 1;
-}
-message MailBox{
-     PingMensagem ping = 1;
-     PongMensagem pong = 2;
-     FilhoMensagem filho = 3;
-     ErroMensagem erro = 4;
 }
