@@ -29,7 +29,12 @@ public class SupervisorPing extends UntypedAbstractActor {
                             if (e instanceof NullPointerException) {
                                 log.info("Supervisor Strategry error: " + e.getMessage(), e);
                                 return SupervisorStrategy.restart();
-                            } else {
+                            }
+                            if (e instanceof IllegalArgumentException){
+                                log.info("Supervisor Strategry error: " + e.getMessage(), e);
+                                return SupervisorStrategy.stop();
+                            }
+                            else {
                                 log.info("escalate");
                                 return SupervisorStrategy.escalate();
                             }
@@ -37,7 +42,9 @@ public class SupervisorPing extends UntypedAbstractActor {
                     });
 
     ErroMensagem erro = ErroMensagem.newBuilder().setMensagem(new NullPointerException().toString()).build();
-    private ActorRef actorPingRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPing.class), "actorPing");
+    private ActorRef actorPingBaixoRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPingBaixo.class), "actorPingBaixo");
+    private ActorRef actorPingNormalRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPingNormal.class), "actorPingNormal");
+    private ActorRef actorPingAltoRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPingAlto.class), "actorPingAlto");
 
     @Override
     public SupervisorStrategy supervisorStrategy() {
@@ -48,10 +55,16 @@ public class SupervisorPing extends UntypedAbstractActor {
     public void onReceive(Object mensagem) throws Throwable {
 
         if (mensagem.equals("Iniciar")) {
-            actorPingRef.tell(PingMensagem.newBuilder().setMensagem(mensagem.toString()).setNivel(Nivel.BAIXO).build(), getSelf());
+            actorPingBaixoRef.tell(PingMensagem.newBuilder().setMensagem(mensagem.toString()).setNivel(Nivel.BAIXO).build(), getSelf());
         } else if (mensagem instanceof PongMensagem) {
+            if (((PongMensagem) mensagem).getNivel().equals(Nivel.BAIXO)) {
+                actorPingBaixoRef.tell(mensagem, getSender());
+            }
             if (((PongMensagem) mensagem).getNivel().equals(Nivel.NORMAL)) {
-                actorPingRef.tell(mensagem, getSender());
+                actorPingNormalRef.tell(mensagem, getSender());
+            }
+            if (((PongMensagem) mensagem).getNivel().equals(Nivel.ALTO)) {
+                actorPingAltoRef.tell(mensagem, getSender());
             }
         } else if (mensagem instanceof ErroMensagem) {
             unhandled(mensagem);

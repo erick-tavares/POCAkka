@@ -10,23 +10,21 @@ import protobuf.PingMensagem;
 import protobuf.PongMensagem;
 
 @Actor
-public class ActorPong extends UntypedAbstractActor {
+public class ActorPongNormal extends UntypedAbstractActor {
 
     LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
-    PongMensagem pong = PongMensagem.newBuilder().setMensagem("Pong").setNivel(Nivel.NORMAL).build();
+    PongMensagem pong = PongMensagem.newBuilder().setMensagem("Pong").setNivel(Nivel.ALTO).build();
     ActorSelection actorPingRef = getContext().actorSelection("akka.tcp://ActorSystemPing@127.0.0.1:2552/user/supervisorPing");
 
     @Override
     public void onReceive(Object mensagem) throws Throwable {
 
         if (mensagem instanceof PingMensagem) {
-            if (((PingMensagem) mensagem).getNivel().equals(Nivel.BAIXO)) {
-                log.info("Mensagem recebida: {} ", mensagem);
-                actorPingRef.tell(pong, getSelf());
-            } else {
-                unhandled(mensagem);
-            }
+            log.info("Mensagem recebida: {} ", mensagem);
+            actorPingRef.tell(pong, getSelf());
+        } else {
+            unhandled(mensagem);
         }
     }
 }

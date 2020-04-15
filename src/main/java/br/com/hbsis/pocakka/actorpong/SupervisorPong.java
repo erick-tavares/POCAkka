@@ -28,14 +28,21 @@ public class SupervisorPong extends UntypedAbstractActor {
                             if (e instanceof NullPointerException) {
                                 log.info("Supervisor Strategry error: " + e.getMessage(), e);
                                 return SupervisorStrategy.restart();
-                            } else {
+                            }
+                            if (e instanceof IllegalArgumentException) {
+                                log.info("Supervisor Strategry error: " + e.getMessage(), e);
+                                return SupervisorStrategy.stop();
+                            }
+                            else {
                                 log.info("escalate");
                                 return SupervisorStrategy.escalate();
                             }
                         }
                     });
     ErroMensagem erro = ErroMensagem.newBuilder().setMensagem(new NullPointerException().toString()).build();
-    private ActorRef actorPongRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPong.class), "actorPong");
+    private ActorRef actorPongBaixoRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPongBaixo.class), "actorPongBaixo");
+    private ActorRef actorPongNormalRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPongNormal.class), "actorPongNormal");
+    private ActorRef actorPongAltoRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPongAlto.class), "actorPongAlto");
 
     @Override
     public SupervisorStrategy supervisorStrategy() {
@@ -47,7 +54,13 @@ public class SupervisorPong extends UntypedAbstractActor {
 
         if (mensagem instanceof PingMensagem) {
             if (((PingMensagem) mensagem).getNivel().equals(Nivel.BAIXO)) {
-                actorPongRef.tell(mensagem, getSender());
+                actorPongBaixoRef.tell(mensagem, getSender());
+            }
+            if (((PingMensagem) mensagem).getNivel().equals(Nivel.NORMAL)) {
+                actorPongNormalRef.tell(mensagem, getSender());
+            }
+            if (((PingMensagem) mensagem).getNivel().equals(Nivel.ALTO)) {
+                actorPongAltoRef.tell(mensagem, getSender());
             }
         } else if (mensagem instanceof ErroMensagem) {
             unhandled(mensagem);

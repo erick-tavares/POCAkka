@@ -1,4 +1,4 @@
-syntax="proto3";
+syntax="proto2";
 
 package serializacao;
 
@@ -13,15 +13,15 @@ enum Nivel {
 }
 
 message PingMensagem{
-     string mensagem = 1;
-          Nivel nivel = 2;
+    required string mensagem = 1;
+    required    Nivel nivel = 2;
 }
 
 message PongMensagem{
-     string mensagem = 1;
-     Nivel nivel = 2;
+     required  string mensagem = 1;
+     required  Nivel nivel = 2;
 }
 
 message ErroMensagem{
-     string mensagem = 1;
+     required   string mensagem = 1;
 }
