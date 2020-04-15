@@ -6,6 +6,7 @@ import akka.actor.SupervisorStrategy;
 import akka.actor.UntypedAbstractActor;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
+import akka.protobuf.UninitializedMessageException;
 import br.com.hbsis.pocakka.config.Actor;
 import br.com.hbsis.pocakka.config.SpringProps;
 import protobuf.ErroMensagem;
@@ -62,9 +63,10 @@ public class SupervisorPong extends UntypedAbstractActor {
             if (((PingMensagem) mensagem).getNivel().equals(Nivel.ALTO)) {
                 actorPongAltoRef.tell(mensagem, getSender());
             }
-        } else if (mensagem instanceof ErroMensagem) {
+        }
+        else {
             unhandled(mensagem);
-            getSelf().tell(erro, getSelf());
+            getSelf().tell(new NullPointerException(), getSelf());
         }
     }
 }

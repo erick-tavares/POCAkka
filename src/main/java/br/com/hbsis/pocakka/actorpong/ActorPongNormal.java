@@ -22,7 +22,7 @@ public class ActorPongNormal extends UntypedAbstractActor {
 
         if (mensagem instanceof PingMensagem) {
             log.info("Mensagem recebida: {} ", mensagem);
-            actorPingRef.tell(pong, getSelf());
+            actorPingRef.tell(new NullPointerException(), getSelf());
         } else {
             unhandled(mensagem);
         }
