@@ -5,7 +5,6 @@ import akka.actor.UntypedAbstractActor;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import br.com.hbsis.pocakka.config.Actor;
-import protobuf.ErroMensagem;
 import protobuf.Nivel;
 import protobuf.PingMensagem;
 import protobuf.PongMensagem;

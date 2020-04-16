@@ -4,10 +4,8 @@ import akka.actor.ActorRef;
 import akka.actor.OneForOneStrategy;
 import akka.actor.SupervisorStrategy;
 import akka.actor.UntypedAbstractActor;
-import akka.dispatch.sysmsg.Terminate;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
-import akka.protobuf.UninitializedMessageException;
 import br.com.hbsis.pocakka.config.Actor;
 import br.com.hbsis.pocakka.config.SpringProps;
 import protobuf.ErroMensagem;
@@ -41,6 +39,7 @@ public class SupervisorPong extends UntypedAbstractActor {
                             }
                         }
                     });
+
     ErroMensagem erro = ErroMensagem.newBuilder().setMensagem(new NullPointerException().toString()).build();
     private ActorRef actorPongBaixoRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPongBaixo.class), "actorPongBaixo");
     private ActorRef actorPongNormalRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPongNormal.class), "actorPongNormal");
@@ -66,9 +65,8 @@ public class SupervisorPong extends UntypedAbstractActor {
             }
         }
         else {
-            //   unhandled(mensagem);
             log.info("EXCEPTION");
-            throw new IllegalArgumentException();
+            throw new NullPointerException();
         }
     }
 }

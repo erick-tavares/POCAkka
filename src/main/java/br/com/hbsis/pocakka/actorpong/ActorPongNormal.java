@@ -5,7 +5,6 @@ import akka.actor.UntypedAbstractActor;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import br.com.hbsis.pocakka.config.Actor;
-import protobuf.ErroMensagem;
 import protobuf.Nivel;
 import protobuf.PingMensagem;
 import protobuf.PongMensagem;
@@ -15,7 +14,6 @@ public class ActorPongNormal extends UntypedAbstractActor {
 
     LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
-    ErroMensagem erro = ErroMensagem.newBuilder().setMensagem(new NullPointerException().toString() + "------------------------------------------------").build();
     PongMensagem pong = PongMensagem.newBuilder().setMensagem("Pong").setNivel(Nivel.ALTO).build();
     ActorSelection actorPingRef = getContext().actorSelection("akka.tcp://ActorSystemPing@127.0.0.1:2552/user/supervisorPing");
 
@@ -24,10 +22,9 @@ public class ActorPongNormal extends UntypedAbstractActor {
 
         if (mensagem instanceof PingMensagem) {
             log.info("Mensagem recebida: {} ", mensagem);
-            actorPingRef.tell(erro, getSelf());
+            actorPingRef.tell(pong, getSelf());
+        } else {
+            unhandled(mensagem);
         }
-//        else {
-//            unhandled(mensagem);
-//        }
     }
 }
