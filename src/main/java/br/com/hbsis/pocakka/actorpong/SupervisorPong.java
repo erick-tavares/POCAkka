@@ -4,6 +4,7 @@ import akka.actor.ActorRef;
 import akka.actor.OneForOneStrategy;
 import akka.actor.SupervisorStrategy;
 import akka.actor.UntypedAbstractActor;
+import akka.dispatch.sysmsg.Terminate;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import akka.protobuf.UninitializedMessageException;
@@ -65,8 +66,9 @@ public class SupervisorPong extends UntypedAbstractActor {
             }
         }
         else {
-            unhandled(mensagem);
-            getSelf().tell(new NullPointerException(), getSelf());
+            //   unhandled(mensagem);
+            log.info("EXCEPTION");
+            throw new IllegalArgumentException();
         }
     }
 }
