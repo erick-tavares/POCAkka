@@ -16,7 +16,10 @@ mensagem.proto foi compilada com o arquivo protoc.exe, e executada pelo Terminal
 
 comando:
 dentro da pasta do mensagem.proto
+
 /Users/exemplo.user/protoc-3.11.4-win64/bin/protoc --java_out=.. mensagem.proto
+
 "/Users/exemplo.user/protoc-3.11.4-win64/bin/protoc"   caminho do protoc.exe
+
 ".. mensagem.proto" destino da pasta protobuf a ser criada e nome do arquivo.proto a ser executado.
 
