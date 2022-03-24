@@ -42,9 +42,9 @@ public class SupervisorPing extends UntypedAbstractActor {
                     });
 
     ErroMensagem erro = ErroMensagem.newBuilder().setMensagem(new NullPointerException().toString()).build();
-    private ActorRef actorPingBaixoRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPingBaixo.class), "actorPingBaixo");
-    private ActorRef actorPingNormalRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPingNormal.class), "actorPingNormal");
-    private ActorRef actorPingAltoRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPingAlto.class), "actorPingAlto");
+    private final ActorRef actorPingBaixoRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPingBaixo.class), "actorPingBaixo");
+    private final ActorRef actorPingNormalRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPingNormal.class), "actorPingNormal");
+    private final ActorRef actorPingAltoRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPingAlto.class), "actorPingAlto");
 
     @Override
     public SupervisorStrategy supervisorStrategy() {

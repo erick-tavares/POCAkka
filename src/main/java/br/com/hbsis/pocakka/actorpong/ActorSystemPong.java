@@ -17,7 +17,6 @@ public class ActorSystemPong {
 
     @Autowired
     private ApplicationContext context;
-
     public static void main(String[] args) {
         SpringApplication.run(ActorSystemPong.class, args);
     }
@@ -25,8 +24,8 @@ public class ActorSystemPong {
     @PostConstruct
     void init() {
         ActorSystem actorSystem = ActorSystem.create("ActorSystemPong", ConfigFactory.load().getConfig("ActorSystemPong"));
-
         SpringExtension.getInstance().get(actorSystem).initialize(context);
+
         ActorRef actorSuperRef = actorSystem.actorOf(SpringProps.create(actorSystem, SupervisorPong.class), "supervisorPong");
 
         actorSystem.getWhenTerminated();

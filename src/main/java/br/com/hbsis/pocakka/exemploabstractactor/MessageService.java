@@ -1,4 +1,4 @@
-package br.com.hbsis.pocakka.exemploAbstractActor;
+package br.com.hbsis.pocakka.exemploabstractactor;
 
 import org.springframework.stereotype.Service;
 
