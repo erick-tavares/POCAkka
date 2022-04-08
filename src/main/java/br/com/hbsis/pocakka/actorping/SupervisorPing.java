@@ -22,7 +22,7 @@ public class SupervisorPing extends UntypedAbstractActor {
     LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
     public SupervisorStrategy strategy =
-            new OneForOneStrategy(3, Duration.create(5, TimeUnit.SECONDS),
+            new OneForOneStrategy(3, Duration.create(1, TimeUnit.SECONDS),
                     new akka.japi.Function<Throwable, SupervisorStrategy.Directive>() {
 
                         @Override
@@ -40,6 +40,7 @@ public class SupervisorPing extends UntypedAbstractActor {
                             }
                         }
                     });
+
 
     ErroMensagem erro = ErroMensagem.newBuilder().setMensagem(new NullPointerException().toString()).build();
     private final ActorRef actorPingBaixoRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPingBaixo.class), "actorPingBaixo");
@@ -67,8 +68,7 @@ public class SupervisorPing extends UntypedAbstractActor {
                 actorPingAltoRef.tell(mensagem, getSender());
             }
         } else {
-            log.info("EXCEPTION");
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
     }
 }

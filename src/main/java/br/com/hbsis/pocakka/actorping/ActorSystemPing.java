@@ -17,6 +17,7 @@ public class ActorSystemPing {
 
     @Autowired
     private ApplicationContext context;
+
     public static void main(String[] args) {
         SpringApplication.run(ActorSystemPing.class, args);
     }

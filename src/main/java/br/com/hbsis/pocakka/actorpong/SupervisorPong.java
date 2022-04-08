@@ -20,7 +20,7 @@ public class SupervisorPong extends UntypedAbstractActor {
 
     LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
     public SupervisorStrategy strategy =
-            new OneForOneStrategy(3, Duration.create(5, TimeUnit.SECONDS),
+            new OneForOneStrategy(3, Duration.create(1, TimeUnit.SECONDS),
                     new akka.japi.Function<Throwable, SupervisorStrategy.Directive>() {
 
                         @Override
@@ -32,8 +32,7 @@ public class SupervisorPong extends UntypedAbstractActor {
                             if (e instanceof IllegalArgumentException) {
                                 log.info("Supervisor Strategry error: " + e.getMessage(), e);
                                 return SupervisorStrategy.stop();
-                            }
-                            else {
+                            } else {
                                 log.info("escalate");
                                 return SupervisorStrategy.escalate();
                             }
@@ -44,11 +43,6 @@ public class SupervisorPong extends UntypedAbstractActor {
     private final ActorRef actorPongBaixoRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPongBaixo.class), "actorPongBaixo");
     private final ActorRef actorPongNormalRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPongNormal.class), "actorPongNormal");
     private final ActorRef actorPongAltoRef = getContext().actorOf(SpringProps.create(getContext().system(), ActorPongAlto.class), "actorPongAlto");
-
-    @Override
-    public SupervisorStrategy supervisorStrategy() {
-        return strategy;
-    }
 
     @Override
     public void onReceive(Object mensagem) throws Throwable {
@@ -63,10 +57,8 @@ public class SupervisorPong extends UntypedAbstractActor {
             if (((PingMensagem) mensagem).getNivel().equals(Nivel.ALTO)) {
                 actorPongAltoRef.tell(mensagem, getSender());
             }
-        }
-        else {
-            log.info("EXCEPTION");
-            throw new NullPointerException();
+        } else {
+            throw new IllegalArgumentException();
         }
     }
 }

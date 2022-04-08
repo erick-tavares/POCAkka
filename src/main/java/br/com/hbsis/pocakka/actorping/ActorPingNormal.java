@@ -22,9 +22,8 @@ public class ActorPingNormal extends UntypedAbstractActor {
 
         if (mensagem instanceof PongMensagem) {
             log.info("Mensagem recebida: {} ", mensagem);
-            actorPongRef.tell(ping,getSelf());
-        }
-        else{
+            actorPongRef.tell(ping, getSelf());
+        } else {
             unhandled(mensagem);
         }
     }
